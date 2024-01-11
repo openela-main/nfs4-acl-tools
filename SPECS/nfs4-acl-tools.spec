@@ -1,6 +1,6 @@
 Name:           nfs4-acl-tools
 Version:        0.4.2
-Release:        0%{?dist}
+Release:        2%{?dist}
 Summary:        The nfs4 ACL tools
 License:        BSD
 URL:            http://git.linux-nfs.org/?p=bfields/nfs4-acl-tools.git;a=summary
@@ -9,6 +9,8 @@ Source0:        http://linux-nfs.org/~bfields/nfs4-acl-tools/%{name}-%{version}.
 BuildRequires: make
 BuildRequires: libtool
 BuildRequires: libattr-devel
+
+Patch01: nfs4-acl-tools-0.4.2-acl-ptr-null.patch
 
 %description
 This package contains commandline ACL utilities for the Linux
@@ -37,6 +39,12 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man5/*
 
 %changelog
+* Tue Jun  6 2023 Steve Dickson <steved@redhat.com> - 0.4.2-2
+- Rebuild: nfs4_getfacl: Initialize acl pointer to NULL (bz 2144829)
+
+* Mon Feb 13 2023 Steve Dickson <steved@redhat.com> - 0.4.2-1
+- nfs4_getfacl: Initialize acl pointer to NULL (bz 2144829)
+
 * Tue Nov 15 2022 Steve Dickson <steved@redhat.com> - 0.4.2-0
 - Updated to the latest upstream release: nfs4-acl-tools-0.4.2 (bz 2059052)
 
